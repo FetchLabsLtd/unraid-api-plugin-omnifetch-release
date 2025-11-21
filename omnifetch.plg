@@ -49,24 +49,28 @@ Provides extended functionality including:
 
 <FILE Run="/bin/bash">
 <INLINE>
+<![CDATA[
 # Force delete ALL old plugin packages and plugin directory
 echo "Cleaning up old plugin files..."
 rm -rf /boot/config/plugins/OmniFetch
 rm -rf /usr/local/unraid-api/plugins/omnifetch
 mkdir -p /boot/config/plugins/OmniFetch
-echo "Cleanup complete"
-</INLINE>
-</FILE>
 
-<FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz" Run="/bin/bash">
-<URL>&packageURL;/omnifetch-plugin-&version;.txz</URL>
-<INLINE>
-<![CDATA[
-# Extract plugin package
+# Download package directly
 PLUGIN_PKG="/boot/config/plugins/OmniFetch/omnifetch-plugin-0.1.30.txz"
+DOWNLOAD_URL="https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/packages/omnifetch-plugin-0.1.30.txz"
 
-echo "Extracting OmniFetch plugin package..."
-echo "Package location: $PLUGIN_PKG"
+echo "Downloading plugin package..."
+echo "URL: $DOWNLOAD_URL"
+wget -O "$PLUGIN_PKG" "$DOWNLOAD_URL" 2>&1
+
+if [ ! -f "$PLUGIN_PKG" ]; then
+  echo "ERROR: Download failed"
+  exit 1
+fi
+
+echo ""
+echo "Download complete. Checking file..."
 ls -lh "$PLUGIN_PKG"
 echo "File type:"
 file "$PLUGIN_PKG"
@@ -75,8 +79,10 @@ head -c 50 "$PLUGIN_PKG" | xxd
 echo ""
 echo "MD5 checksum:"
 md5sum "$PLUGIN_PKG"
+echo ""
 
 # Try extraction
+echo "Extracting package..."
 if tar -xJf "$PLUGIN_PKG" -C / 2>&1; then
   echo "Package extracted successfully"
 else
