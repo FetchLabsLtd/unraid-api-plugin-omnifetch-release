@@ -58,9 +58,12 @@ echo "Cleanup complete"
 </INLINE>
 </FILE>
 
-<FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz" Run="/bin/bash">
+<FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz">
 <URL>&packageURL;/omnifetch-plugin-&version;.txz</URL>
 <MD5>&md5;</MD5>
+</FILE>
+
+<FILE Run="/bin/bash">
 <INLINE>
 <![CDATA[
 # Find the downloaded package
