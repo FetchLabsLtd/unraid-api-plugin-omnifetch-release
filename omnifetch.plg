@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name "OmniFetch">
   <!ENTITY author "FetchLabs">
-  <!ENTITY version "0.1.28">
-  <!ENTITY md5 "PLACEHOLDER_MD5">
+  <!ENTITY version "0.1.30">
+  <!ENTITY md5 "428c35aa463b02a08f9a886248cccbb4">
   <!ENTITY launch "Settings/OmniFetch">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.plg">
   <!ENTITY packageURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/packages">
@@ -57,8 +57,8 @@ rm -rf /usr/local/unraid-api/plugins/omnifetch
 mkdir -p /boot/config/plugins/OmniFetch
 
 # Download package directly
-PLUGIN_PKG="/boot/config/plugins/OmniFetch/omnifetch-plugin-0.1.30.txz"
-DOWNLOAD_URL="https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/packages/omnifetch-plugin-0.1.30.txz"
+PLUGIN_PKG="/boot/config/plugins/OmniFetch/omnifetch-plugin-&version;.txz"
+DOWNLOAD_URL="&packageURL;/omnifetch-plugin-&version;.txz"
 
 echo "Downloading plugin package..."
 echo "URL: $DOWNLOAD_URL"
