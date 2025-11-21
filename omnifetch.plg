@@ -3,7 +3,7 @@
   <!ENTITY name "OmniFetch">
   <!ENTITY author "FetchLabs">
   <!ENTITY version "0.1.28">
-  <!ENTITY md5 "5346c983ca36a25f8a5c69bd8be6f956">
+  <!ENTITY md5 "2b10b65d6bb5a9bd9d032997fc903d56">
   <!ENTITY launch "Settings/OmniFetch">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.plg">
   <!ENTITY packageURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/packages">
