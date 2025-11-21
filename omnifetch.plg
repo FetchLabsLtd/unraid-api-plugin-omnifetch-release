@@ -1,0 +1,110 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+  <!ENTITY name "OmniFetch">
+  <!ENTITY author "FetchLabs">
+  <!ENTITY version "0.1.28">
+  <!ENTITY md5 "ed1834ac2b6de86b69c9b58f74a3ed95">
+  <!ENTITY launch "Settings/OmniFetch">
+  <!ENTITY pluginURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.plg">
+  <!ENTITY packageURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/packages">
+  <!ENTITY pluginDir "/boot/config/plugins/&name;">
+]>
+
+<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="7.0.0">
+
+<CHANGES>
+##&name;
+
+###2025.11.21
+- Initial release
+- Power monitoring and hardware sensors integration
+- VM snapshot management with Unraid WebUI compatibility
+- GraphQL API extensions for system management
+- Enhanced VM monitoring with snapshot support
+
+###Features
+- Real-time power consumption monitoring
+- lm-sensors hardware monitoring integration
+- GPU statistics and monitoring
+- System management (shutdown, reboot, uptime)
+- VM snapshot creation, deletion, and revert
+- Unraid WebUI-compatible snapshot database integration
+- Extended GraphQL API for system and VM operations
+</CHANGES>
+
+<!--
+OmniFetch Plugin for Unraid API
+Provides extended functionality including:
+- Power monitoring and cost tracking
+- Hardware sensors integration (lm-sensors)
+- GPU monitoring
+- VM snapshot management
+- System management operations
+-->
+
+<FILE Run="/bin/bash">
+<INLINE>
+# Remove old versions
+rm -f $(ls &pluginDir;/omnifetch-plugin-*.txz 2>/dev/null | grep -v '&version;')
+</INLINE>
+</FILE>
+
+<FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz" Run="upgradepkg --install-new">
+<URL>&packageURL;/omnifetch-plugin-&version;.txz</URL>
+<MD5>&md5;</MD5>
+</FILE>
+
+<FILE Run="/bin/bash">
+<INLINE>
+<![CDATA[
+# Verify installation
+if [ -d "/usr/local/unraid-api/plugins/omnifetch" ]; then
+  echo "OmniFetch plugin installed successfully"
+
+  # Check version
+  if [ -f "/usr/local/unraid-api/plugins/omnifetch/version.txt" ]; then
+    INSTALLED_VERSION=$(cat /usr/local/unraid-api/plugins/omnifetch/version.txt)
+    echo "Installed version: $INSTALLED_VERSION"
+  fi
+
+  # Restart Unraid API to load the plugin
+  if [ -f "/usr/local/bin/pm2" ]; then
+    echo "Restarting Unraid API to load OmniFetch plugin..."
+    /usr/local/bin/pm2 restart unraid-api 2>/dev/null || echo "Note: Manual restart of Unraid API may be required"
+  fi
+
+  echo "OmniFetch plugin is now available"
+  echo "Access via GraphQL API queries: omnifetch, listVMs, getVMDetail"
+  echo "VM snapshot mutations: createVMSnapshot, deleteVMSnapshot, revertVMSnapshot"
+else
+  echo "ERROR: OmniFetch plugin installation failed"
+  exit 1
+fi
+]]>
+</INLINE>
+</FILE>
+
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+<![CDATA[
+echo "Removing OmniFetch plugin..."
+
+# Remove plugin files
+rm -rf /usr/local/unraid-api/plugins/omnifetch
+
+# Clean up plugin directory
+rm -f &pluginDir;/omnifetch-plugin-*.txz
+rm -f &pluginDir;/omnifetch-plugin-*.md5
+
+# Restart Unraid API
+if [ -f "/usr/local/bin/pm2" ]; then
+  echo "Restarting Unraid API..."
+  /usr/local/bin/pm2 restart unraid-api 2>/dev/null || echo "Note: Manual restart of Unraid API may be required"
+fi
+
+echo "OmniFetch plugin removed successfully"
+]]>
+</INLINE>
+</FILE>
+
+</PLUGIN>
