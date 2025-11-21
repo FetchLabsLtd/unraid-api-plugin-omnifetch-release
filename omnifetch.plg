@@ -11,7 +11,7 @@
   <!ENTITY icon "area-chart">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="&icon;" min="7.0.0">
+<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="&icon;" support="https://github.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release" min="7.0.0">
 
 <CHANGES>
 ##&name;
