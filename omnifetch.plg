@@ -54,33 +54,24 @@ rm -f $(ls &pluginDir;/omnifetch-plugin-*.txz 2>/dev/null | grep -v '&version;')
 </INLINE>
 </FILE>
 
-<FILE Run="/bin/bash">
-<INLINE>
-<![CDATA[
-# Extract plugin package
-PLUGIN_PKG="&pluginDir;/omnifetch-plugin-&version;.txz"
-
-if [ -f "$PLUGIN_PKG" ]; then
-  echo "Extracting OmniFetch plugin package..."
-  tar -xJf "$PLUGIN_PKG" -C / 2>&1
-
-  if [ $? -eq 0 ]; then
-    echo "Package extracted successfully"
-  else
-    echo "ERROR: Failed to extract plugin package"
-    exit 1
-  fi
-else
-  echo "ERROR: Plugin package not found at $PLUGIN_PKG"
-  exit 1
-fi
-]]>
-</INLINE>
-</FILE>
-
 <FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz">
 <URL>&packageURL;/omnifetch-plugin-&version;.txz</URL>
 <MD5>&md5;</MD5>
+</FILE>
+
+<FILE Run="/bin/bash">
+<INLINE>
+# Extract plugin package
+echo "Extracting OmniFetch plugin package..."
+tar -xJf &pluginDir;/omnifetch-plugin-&version;.txz -C / 2>&amp;1
+
+if [ $? -eq 0 ]; then
+  echo "Package extracted successfully"
+else
+  echo "ERROR: Failed to extract plugin package"
+  exit 1
+fi
+</INLINE>
 </FILE>
 
 <FILE Run="/bin/bash">
