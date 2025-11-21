@@ -1,6 +1,6 @@
 # Release v0.1.28
 
-Released on 2025-11-21 21:19:10 UTC
+Released on 2025-11-21 21:27:42 UTC
 
 ## Installation
 
@@ -13,7 +13,7 @@ Plugin URL: https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omn
 ## Package Details
 
 - **Version**: 0.1.28
-- **MD5 Checksum**: ed1834ac2b6de86b69c9b58f74a3ed95
+- **MD5 Checksum**: 5346c983ca36a25f8a5c69bd8be6f956
 - **Package**: `omnifetch-plugin-0.1.28.txz`
 
 ## Changes
