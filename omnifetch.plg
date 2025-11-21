@@ -2,15 +2,16 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name "OmniFetch">
   <!ENTITY author "FetchLabs">
-  <!ENTITY version "0.1.29">
-  <!ENTITY md5 "81c7bba872795465ab213e3ee86b08fb">
+  <!ENTITY version "0.1.28">
+  <!ENTITY md5 "PLACEHOLDER_MD5">
   <!ENTITY launch "Settings/OmniFetch">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.plg">
   <!ENTITY packageURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/packages">
   <!ENTITY pluginDir "/boot/config/plugins/&name;">
+  <!ENTITY icon "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.png">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="7.0.0">
+<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="&icon;" min="7.0.0">
 
 <CHANGES>
 ##&name;
@@ -31,6 +32,10 @@
 - Unraid WebUI-compatible snapshot database integration
 - Extended GraphQL API for system and VM operations
 </CHANGES>
+
+<DESCRIPTION>
+Extended functionality plugin for Unraid API providing hardware monitoring, power tracking, and VM snapshot management. Features real-time power consumption tracking, lm-sensors integration, GPU monitoring, and full VM snapshot management compatible with Unraid WebUI.
+</DESCRIPTION>
 
 <!--
 OmniFetch Plugin for Unraid API
@@ -73,9 +78,19 @@ if [ -d "/usr/local/unraid-api/plugins/omnifetch" ]; then
     /usr/local/bin/pm2 restart unraid-api 2>/dev/null || echo "Note: Manual restart of Unraid API may be required"
   fi
 
-  echo "OmniFetch plugin is now available"
-  echo "Access via GraphQL API queries: omnifetch, listVMs, getVMDetail"
-  echo "VM snapshot mutations: createVMSnapshot, deleteVMSnapshot, revertVMSnapshot"
+  echo ""
+  echo "=========================================="
+  echo "OmniFetch plugin installed successfully!"
+  echo "=========================================="
+  echo ""
+  echo "Access via GraphQL API queries:"
+  echo "  - omnifetch, listVMs, getVMDetail"
+  echo ""
+  echo "VM snapshot mutations:"
+  echo "  - createVMSnapshot, deleteVMSnapshot, revertVMSnapshot"
+  echo ""
+  echo "It is now safe to close this window."
+  echo ""
 else
   echo "ERROR: OmniFetch plugin installation failed"
   exit 1
