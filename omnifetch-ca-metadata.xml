@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+  <Plugin>True</Plugin>
+  <PluginURL>https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.plg</PluginURL>
+  <PluginAuthor>FetchLabs</PluginAuthor>
+  <Beta>False</Beta>
+  <Category>Tools:System</Category>
+  <Name>OmniFetch</Name>
+  <Description>Extended functionality plugin for Unraid API providing hardware monitoring, power tracking, and VM snapshot management. Features real-time power consumption tracking, lm-sensors integration, GPU monitoring, and full VM snapshot management compatible with Unraid WebUI.</Description>
+  <Support>https://github.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release</Support>
+  <Icon>https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/images/omnifetch.png</Icon>
+</Containers>
