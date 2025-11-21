@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name "OmniFetch">
   <!ENTITY author "FetchLabs">
-  <!ENTITY version "0.1.29">
-  <!ENTITY md5 "81c7bba872795465ab213e3ee86b08fb">
+  <!ENTITY version "0.1.28">
+  <!ENTITY md5 "PLACEHOLDER_MD5">
   <!ENTITY launch "Settings/OmniFetch">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.plg">
   <!ENTITY packageURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/packages">
@@ -54,7 +54,31 @@ rm -f $(ls &pluginDir;/omnifetch-plugin-*.txz 2>/dev/null | grep -v '&version;')
 </INLINE>
 </FILE>
 
-<FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz" Run="upgradepkg --install-new">
+<FILE Run="/bin/bash">
+<INLINE>
+<![CDATA[
+# Extract plugin package
+PLUGIN_PKG="&pluginDir;/omnifetch-plugin-&version;.txz"
+
+if [ -f "$PLUGIN_PKG" ]; then
+  echo "Extracting OmniFetch plugin package..."
+  tar -xJf "$PLUGIN_PKG" -C / 2>&1
+
+  if [ $? -eq 0 ]; then
+    echo "Package extracted successfully"
+  else
+    echo "ERROR: Failed to extract plugin package"
+    exit 1
+  fi
+else
+  echo "ERROR: Plugin package not found at $PLUGIN_PKG"
+  exit 1
+fi
+]]>
+</INLINE>
+</FILE>
+
+<FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz">
 <URL>&packageURL;/omnifetch-plugin-&version;.txz</URL>
 <MD5>&md5;</MD5>
 </FILE>
