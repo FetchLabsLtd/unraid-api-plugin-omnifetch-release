@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name "OmniFetch">
   <!ENTITY author "FetchLabs">
-  <!ENTITY version "0.1.28">
-  <!ENTITY md5 "PLACEHOLDER_MD5">
+  <!ENTITY version "0.1.30">
+  <!ENTITY md5 "428c35aa463b02a08f9a886248cccbb4">
   <!ENTITY launch "Settings/OmniFetch">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.plg">
   <!ENTITY packageURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/packages">
