@@ -49,8 +49,12 @@ Provides extended functionality including:
 
 <FILE Run="/bin/bash">
 <INLINE>
-# Remove old versions
-rm -f $(ls &pluginDir;/omnifetch-plugin-*.txz 2>/dev/null | grep -v '&version;')
+# Force delete ALL old plugin packages and plugin directory
+echo "Cleaning up old plugin files..."
+rm -rf /boot/config/plugins/OmniFetch
+rm -rf /usr/local/unraid-api/plugins/omnifetch
+mkdir -p /boot/config/plugins/OmniFetch
+echo "Cleanup complete"
 </INLINE>
 </FILE>
 
