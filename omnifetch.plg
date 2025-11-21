@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name "OmniFetch">
   <!ENTITY author "FetchLabs">
-  <!ENTITY version "0.1.30">
-  <!ENTITY md5 "428c35aa463b02a08f9a886248cccbb4">
+  <!ENTITY version "0.1.28">
+  <!ENTITY md5 "PLACEHOLDER_MD5">
   <!ENTITY launch "Settings/OmniFetch">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.plg">
   <!ENTITY packageURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/packages">
@@ -54,16 +54,14 @@ rm -f $(ls &pluginDir;/omnifetch-plugin-*.txz 2>/dev/null | grep -v '&version;')
 </INLINE>
 </FILE>
 
-<FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz">
+<FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz" Run="/bin/bash">
 <URL>&packageURL;/omnifetch-plugin-&version;.txz</URL>
 <MD5>&md5;</MD5>
-</FILE>
-
-<FILE Run="/bin/bash">
 <INLINE>
+<![CDATA[
 # Extract plugin package
 echo "Extracting OmniFetch plugin package..."
-tar -xJf &pluginDir;/omnifetch-plugin-&version;.txz -C / 2>&amp;1
+tar -xJf /boot/config/plugins/OmniFetch/omnifetch-plugin-*.txz -C / 2>&1
 
 if [ $? -eq 0 ]; then
   echo "Package extracted successfully"
@@ -71,6 +69,7 @@ else
   echo "ERROR: Failed to extract plugin package"
   exit 1
 fi
+]]>
 </INLINE>
 </FILE>
 
