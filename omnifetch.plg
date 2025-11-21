@@ -8,7 +8,7 @@
   <!ENTITY pluginURL "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/omnifetch.plg">
   <!ENTITY packageURL "https://github.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/releases/download/v&version;">
   <!ENTITY pluginDir "/boot/config/plugins/&name;">
-  <!ENTITY icon "https://raw.githubusercontent.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/main/images/omnifetch.png">
+  <!ENTITY icon "dashboard">
 ]>
 
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="&icon;" min="7.0.0">
