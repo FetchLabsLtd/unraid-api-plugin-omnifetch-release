@@ -76,6 +76,23 @@ fi
 
 echo "Package location: $PLUGIN_PKG"
 ls -lh "$PLUGIN_PKG"
+echo ""
+echo "File content (first 200 bytes):"
+head -c 200 "$PLUGIN_PKG"
+echo ""
+echo ""
+echo "File type:"
+file "$PLUGIN_PKG"
+
+# If file is less than 1KB, it's probably an error page
+FILE_SIZE=$(stat -c%s "$PLUGIN_PKG" 2>/dev/null || stat -f%z "$PLUGIN_PKG")
+if [ "$FILE_SIZE" -lt 1024 ]; then
+  echo "ERROR: Downloaded file is too small ($FILE_SIZE bytes)"
+  echo "This is likely an HTML error page, not the actual package"
+  echo "Full content:"
+  cat "$PLUGIN_PKG"
+  exit 1
+fi
 
 # Extract to root
 if tar -xJf "$PLUGIN_PKG" -C / 2>&1; then
