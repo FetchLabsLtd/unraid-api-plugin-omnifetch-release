@@ -63,9 +63,6 @@ echo "Cleanup complete"
 <MD5>&md5;</MD5>
 <INLINE>
 <![CDATA[
-# Extract plugin package
-echo "Extracting OmniFetch plugin package..."
-
 # Find the downloaded package
 PLUGIN_PKG=$(ls /boot/config/plugins/OmniFetch/omnifetch-plugin-*.txz 2>/dev/null | head -1)
 
@@ -74,27 +71,26 @@ if [ -z "$PLUGIN_PKG" ]; then
   exit 1
 fi
 
+echo "Checking downloaded package..."
 echo "Package location: $PLUGIN_PKG"
 ls -lh "$PLUGIN_PKG"
-echo ""
-echo "File content (first 200 bytes):"
-head -c 200 "$PLUGIN_PKG"
-echo ""
-echo ""
-echo "File type:"
-file "$PLUGIN_PKG"
 
 # If file is less than 1KB, it's probably an error page
 FILE_SIZE=$(stat -c%s "$PLUGIN_PKG" 2>/dev/null || stat -f%z "$PLUGIN_PKG")
 if [ "$FILE_SIZE" -lt 1024 ]; then
+  echo ""
   echo "ERROR: Downloaded file is too small ($FILE_SIZE bytes)"
   echo "This is likely an HTML error page, not the actual package"
-  echo "Full content:"
+  echo ""
+  echo "Full file content:"
+  echo "===================="
   cat "$PLUGIN_PKG"
+  echo "===================="
   exit 1
 fi
 
-# Extract to root
+# File looks good, extract it
+echo "Extracting OmniFetch plugin package..."
 if tar -xJf "$PLUGIN_PKG" -C / 2>&1; then
   echo "Package extracted successfully"
 else
