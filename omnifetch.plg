@@ -56,7 +56,6 @@ rm -f $(ls &pluginDir;/omnifetch-plugin-*.txz 2>/dev/null | grep -v '&version;')
 
 <FILE Name="&pluginDir;/omnifetch-plugin-&version;.txz" Run="/bin/bash">
 <URL>&packageURL;/omnifetch-plugin-&version;.txz</URL>
-<MD5>&md5;</MD5>
 <INLINE>
 <![CDATA[
 # Extract plugin package
@@ -65,15 +64,19 @@ PLUGIN_PKG="/boot/config/plugins/OmniFetch/omnifetch-plugin-0.1.30.txz"
 echo "Extracting OmniFetch plugin package..."
 echo "Package location: $PLUGIN_PKG"
 ls -lh "$PLUGIN_PKG"
+echo "File type:"
 file "$PLUGIN_PKG"
+echo "First 50 bytes:"
+head -c 50 "$PLUGIN_PKG" | xxd
+echo ""
+echo "MD5 checksum:"
+md5sum "$PLUGIN_PKG"
 
 # Try extraction
 if tar -xJf "$PLUGIN_PKG" -C / 2>&1; then
   echo "Package extracted successfully"
 else
   echo "ERROR: Failed to extract plugin package"
-  echo "Checking if file is corrupted..."
-  head -c 20 "$PLUGIN_PKG" | xxd
   exit 1
 fi
 ]]>
