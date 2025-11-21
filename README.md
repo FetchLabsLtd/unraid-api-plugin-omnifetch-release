@@ -22,31 +22,31 @@ Extended functionality plugin for the Unraid API providing hardware monitoring, 
 
 ## Features
 
-### 🔌 Power Monitoring
+### Power Monitoring
 - Real-time power consumption tracking
 - Historical data collection (5-minute intervals)
 - Cost calculation and tracking
 - Integration with various power monitoring tools
 
-### 🌡️ Hardware Sensors
+### Hardware Sensors
 - Temperature monitoring (CPU, motherboard, drives)
 - Fan speed monitoring
 - Voltage monitoring
 - lm-sensors integration
 
-### 🎮 GPU Monitoring
+### GPU Monitoring
 - GPU statistics and utilization
 - Temperature and power tracking
 - Multi-GPU support
 
-### 💾 VM Snapshot Management
+### VM Snapshot Management
 - Create VM snapshots with memory state
 - Delete snapshots with proper cleanup
 - Revert to snapshots (removes snapshot after revert)
 - Full Unraid WebUI compatibility
 - Automatic database synchronization
 
-### ⚙️ System Management
+### System Management
 - System uptime tracking
 - Shutdown and reboot scheduling
 - Operation cancellation
@@ -267,16 +267,63 @@ tail -f /var/log/graphql-api.log | grep VMService
 - **GitHub Issues**: [Report bugs or request features](https://github.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/issues)
 - **Unraid Forums**: [Plugin Support Thread](https://forums.unraid.net/topic/...)
 
+## Documentation
+
+- **API Reference**: Full GraphQL API documentation available at [omnifetch.app/docs](https://omnifetch.app/docs)
+- **Changelog**: See [CHANGELOG.md](CHANGELOG.md) for version history
+- **Setup Guide**: Detailed installation and configuration instructions
+
 ## License
 
-Non-Commercial License - FetchLabs Ltd
+**Free for Non-Commercial Use**
+
+```
+NON-COMMERCIAL USE LICENSE
+
+Copyright (c) 2025 FetchLabs Ltd. All rights reserved.
+
+GRANT OF LICENSE
+FetchLabs Ltd. grants you a free, non-exclusive, non-transferable license to
+use, copy, and modify this software for NON-COMMERCIAL purposes only.
+
+NON-COMMERCIAL USE DEFINITION
+Non-commercial use means use solely for personal, educational, academic, or
+non-profit purposes where no monetary compensation or commercial advantage is gained.
+
+PERMITTED USES (Non-Commercial)
+You MAY:
+- Use the Software for personal home server monitoring
+- Use the Software for educational or research purposes
+- Modify the Software for your own non-commercial use
+- Share the Software with others for non-commercial purposes
+
+RESTRICTIONS
+You may NOT:
+- Use the Software for any commercial purpose, including:
+  * Providing services to third parties for compensation
+  * Using the Software in a commercial product or service
+  * Selling, licensing, or sublicensing the Software
+- Remove or alter any copyright notices or license information
+
+COMMERCIAL LICENSING
+For commercial use, enterprise deployments, or revenue-generating activity,
+contact us on Discord: https://discord.gg/T2hMfq4hWy
+
+DISCLAIMER
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+```
 
 This plugin is provided as compiled code. Source code is proprietary.
 
-## Credits
+## Support & Contact
 
-Developed by **FetchLabs Ltd**
+For issues, questions, and commercial licensing:
 
-## Version History
+- **Discord**: [Join our Discord](https://discord.gg/T2hMfq4hWy)
+- **Issues**: [Report bugs or request features](https://github.com/FetchLabsLtd/unraid-api-plugin-omnifetch-release/issues)
+- **Unraid Forums**: [Plugin Support Thread](https://forums.unraid.net/topic/...)
+- **Documentation**: [omnifetch.app/docs](https://omnifetch.app/docs)
 
-See [CHANGELOG.md](CHANGELOG.md) for version history and release notes.
+---
+
+**Built by FetchLabs** | [Website](https://fetchlabs.co.uk) | [OmniFetch App](https://omnifetch.app) | [GitHub](https://github.com/FetchLabsLtd)
