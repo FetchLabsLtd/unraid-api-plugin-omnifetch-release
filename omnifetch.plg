@@ -78,8 +78,11 @@ echo "Checking downloaded package..."
 echo "Package location: $PLUGIN_PKG"
 ls -lh "$PLUGIN_PKG"
 
+# Get file size - try different methods
+FILE_SIZE=$(wc -c < "$PLUGIN_PKG" 2>/dev/null)
+echo "File size: $FILE_SIZE bytes"
+
 # If file is less than 1KB, it's probably an error page
-FILE_SIZE=$(stat -c%s "$PLUGIN_PKG" 2>/dev/null || stat -f%z "$PLUGIN_PKG")
 if [ "$FILE_SIZE" -lt 1024 ]; then
   echo ""
   echo "ERROR: Downloaded file is too small ($FILE_SIZE bytes)"
